@@ -34,9 +34,14 @@ const LoginScreen = () => {
     setPassword('');
   };
 
+  const validateEmail = email => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const onSubmitUserRegister = () => {
     if (!email.trim() || !password.trim()) return console.warn('Будь ласка заповніть поля');
-
+    if (!validateEmail(email))  return console.warn(`Некоректна адреса електронної пошти!`); // Попередження, якщо адреса електронної пошти некоректна
     console.log({ email, password });
 
     handleKeyboardHide();

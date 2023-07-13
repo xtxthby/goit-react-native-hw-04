@@ -35,9 +35,14 @@ const RegistrationScreen = () => {
     setEmail('');
     setPassword('');
   };
+  const validateEmail = email => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const onSubmitUserRegister = () => {
     if (!login || !email || !password) return console.warn('Будь ласка заповніть поля');
+    if (!validateEmail(email))  return console.warn(`Некоректна адреса електронної пошти!`); // Попередження, якщо адреса електронної пошти некоректна
 
     console.log({ login, email, password, avatar });
 
